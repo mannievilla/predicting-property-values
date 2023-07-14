@@ -1,4 +1,4 @@
-# Feel the Churn
+# Predicting Home Value
  
 # Project Description
  
@@ -21,8 +21,8 @@ My initial hypothesis is that drivers of home vlaue will be location, square fee
  
 * Prepare data
    * Create Engineered columns from existing data
-       * ---
-       * ---
+       * removed all but three columns from the data
+       * I kept 
        * ---
        * ---
        * ---
