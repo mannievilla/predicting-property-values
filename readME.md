@@ -20,19 +20,19 @@ My initial hypothesis is that drivers of home vlaue will be location, square fee
 * Aquire data from database
  
 * Prepare data
-   * Create Engineered columns from existing data
-       * removed all but three columns from the data
-       * I kept 
+   * Remove Nulls from data
+       * ---
+       * ---
        * ---
        * ---
        * ---
  
 * Explore data in search of drivers to predict property value
    * Answer the following initial questions
-       * ---?
-       * ---?
-       * Is there a service that is associated with more churn than expected?
-       * Do customers who churn have a higher average monthly spend than those who don't?
+       * What number of Bedrooms and Bathrooms do Homes averaging over 1 million have?
+       * How does Square footage impact Home Value?
+       * Is having 1 bathroom worse for property value than having 2 bedrooms?
+       * What are properties Home Value averages in their counties ?
       
 * Develop a Model to predict property values
    * Use drivers identified in explore to build predictive models of different types
@@ -44,53 +44,31 @@ My initial hypothesis is that drivers of home vlaue will be location, square fee
  
 # Data Dictionary
 
-| Feature | Definition |
-|:--------|:-----------|
-|customer_id| The customer unique ID number|
-|gender| Male or Female,
-|senior_citizen| 0 or 1, The customer is a senior citizen|
-|partner| Yes or No, Customer is a partner with company|
-|dependents| Yes or No, Customer has dependents|
-|tenure| The time in months how long the customer was or is with the company|
-|phone_service| Yes or No, Custoner has phone serivce with pan|
-|multiple_lines| Yes, No or No Phone Service; Customer has multiple lines in plan|
-|online_security| Yes, No or No Internet Service; Customer has online security with plan|
-|online_backup| Yes, No or No Internet Service; |
-|online_backup| Yes, No or No Internet Service; 
-|device_protection| Yes, No or No Internet Service; 
-|tech_support| Yes, No or No Internet Service; 
-|streaming_tv| Yes, No or No Internet Service; 
-|streaming_movies| Yes, No or No Internet Service; 
-|paperless_billing| 
-|monthly_charges|
-|total_charges|
-|churn|
-|contract_type|
-|internet_service_type|
-|payment_type|
-|additional features|Encoded values for categorical data
+
+|**Feature**|**Description**|
+|:-----------|:---------------|
+|Bedrooms | Numbers of bedrooms|
+|Bathrooms | Numbers of bathrooms|
+|sqft | Total calculated square footage|
+|fips | Cunty Codes|
+|home_value | Assessed property value|
+|zipcode | Zip Code|
+
 
 # Steps to Reproduce
 1) Clone this repo.
-2) Acquire the data from 
-3) Put the data in the file containing the cloned repo.
-4) Run notebook.
+2) Acquire the data from CodeUp database.
+3) Run notebook.
  
 # Takeaways and Conclusions
-* Customers with Fiber Optics have more churn than DSL.
-* Encouraging customers to be on automatic payment plan will seems to reduce churn.
-* 643 manual check writers churned which is a 45% churn rate for all payment types.
-* When the monthly charges reached approximate \$70 the churn rate rised.
-* The median monthly payment for customers who churns is \$79.70
-* Customers who do not churn makeup 73% of the data
-* The final model failed to significantly outperform the baseline.
-* Possible reasons include:
-    “payment_type” and “contract_type” may not have had meaningful relation to who will churn.
-    Since monthly charges" seems to be a larger contributor to churn, adding more of the services to see which service may be contributing to churn. 
+* Square Footage plays big role towards value.
+* Number of Bedrooms plays a big role towards.
+* Although bahtrooms does have a relation with value it is tied to Bedrooms.
+* Million dollar homes still follow a standard. More doesn't mean more.
+
  
 # Recommendations
-* This may be simple enough but have a column for reason for caneling service. Helpful to pinpoint issues and improve service.
-
+* Removing and unnecsaary columns and adding a exploring other features like lot size or making a new like the difference of lot and home site square footage. Removing outliers like property values over 1 million dollars.
 
 # Next Steps
-* Explore the relation of Fiber Optics to churn. Services like tech support or streaming services could also be explored.
+* Run RFE or KBest for best feaures to use in the model and create new ones with. And ivestigate why Tweedie ran so poor.
