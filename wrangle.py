@@ -22,7 +22,13 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
+def df_shape():
+    
+    print(f'The number of rows is {len(acquire_zillow())}')  
+    print(f'The number of columns is {len(acquire_zillow().columns.to_list())}')
+
 ############################## AQUIRE ZILLOW FUNCTION ##############################
+
 
 def acquire_zillow():
     '''
@@ -42,8 +48,7 @@ def acquire_zillow():
                             WHERE prop.propertylandusetypeid = 261;''', url)
         #creates new csv if one does not already exist
         df.to_csv('zillow.csv')
-       
-  
+
     
     return df
     
@@ -129,7 +134,7 @@ def prep_zillow(df):
     df = df.rename(columns = {'bedroomcnt':'bedrooms', 
                               'bathroomcnt':'bathrooms', 
                               'calculatedfinishedsquarefeet':'sqft',
-                              'taxvaluedollarcnt':'tax_value'
+                              'taxvaluedollarcnt':'home_value'
                               })
     
     df = df.dropna()
@@ -181,4 +186,36 @@ def split_clean_zillow():
 #     print(f"test: {test.shape}")
     
     return train, validate, test
+
+
+
+
+########################################## X Y SPLIT ##########################################
+
+
+#create a function to isolate the target variable
+def X_y_split():
+    '''
+    This function takes in a dataframe and a target variable
+    Then it returns the X_train, y_train, X_validate, y_validate, X_test, y_test
+    and a print statement with the shape of the new dataframes
+    '''  
+    train, validate, test = split_zillow(wrangle_zillow())
+
+    X_train = train.drop(columns= 'home_value')
+    y_train = train['home_value']
+
+    X_validate = validate.drop(columns= 'home_value')
+    y_validate = validate['home_value']
+
+    X_test = test.drop(columns= 'home_value')
+    y_test = test['home_value']
+        
+    # Have function print datasets shape
+    # print(f'''
+    # X_train -> {X_train.shape}
+    # X_validate -> {X_validate.shape}
+    # X_test -> {X_test.shape}''')
+    
+    return X_train, y_train, X_validate, y_validate, X_test, y_test
         
