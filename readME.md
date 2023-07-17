@@ -20,12 +20,12 @@ My initial hypothesis is that drivers of home vlaue will be location, square fee
 * Aquire data from database
  
 * Prepare data
-   * Remove Nulls from data
-       * ---
-       * ---
-       * ---
-       * ---
-       * ---
+    * Removed columns that did not contain useful information
+    * Checked for nulls in the data 
+    * Checked that column data types were appropriate
+    * Split data into train, validate and test (approx. 60/20/20)
+    * Outliers have not been removed for this iteration of the project
+    * Found the Counties that the fips codes represented online https://www.weather.gov/hnx/cafips
  
 * Explore data in search of drivers to predict property value
    * Answer the following initial questions
